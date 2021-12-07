@@ -119,7 +119,7 @@ public class CharacterController : MonoBehaviour
         RaycastHit hit;
         LayerMask layerIgnore = LayerMask.NameToLayer("Player");
 
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, 20f, layerIgnore))
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, 5f, layerIgnore))
         {
             cell = hit.transform.parent.GetComponent<MazeCell>();
             return cell;
