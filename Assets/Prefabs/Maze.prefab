@@ -44,7 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3f0138f12155e429658d4858625bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomSettings:
+  - floorMaterial: {fileID: 2100000, guid: fd4f4670e069a5f41b8eda7f51b79a12, type: 2}
+    wallMaterial: {fileID: 2100000, guid: fd4f4670e069a5f41b8eda7f51b79a12, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: 3c0692a665e2b484e9b7559a5fef95b1, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 3c0692a665e2b484e9b7559a5fef95b1, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: ba1753b505871c64e98680c0510d5c7f, type: 2}
+    wallMaterial: {fileID: 2100000, guid: ba1753b505871c64e98680c0510d5c7f, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: 3ab8b84b331cdd24a8c521b1423e9f33, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 3ab8b84b331cdd24a8c521b1423e9f33, type: 2}
+  size: {x: 30, y: 30}
   passagePrefab: {fileID: 2555456290832689423, guid: c3e5fad66a7cc894796985c0f1d76641, type: 3}
   wallPrefab: {fileID: 2865029041917179286, guid: 5a2544ee37b806b4bb256a4dabba9d56, type: 3}
-  size: {x: 30, y: 30}
   cellPrefab: {fileID: 4315038384114718822, guid: a90417fe99b6ec04b8f9a81f6c131c17, type: 3}
+  doorPrefab: {fileID: 6023397203254483076, guid: 97b8d9e58b72c9643b6cf934a3116a4d, type: 3}
