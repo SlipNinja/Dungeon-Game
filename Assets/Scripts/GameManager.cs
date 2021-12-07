@@ -5,9 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public Maze mazePrefab;
+    public MazeTower mazeTowerPrefab;
+    public CharacterController playerPrefab;
 
-	private Maze mazeInstance;
+	private CharacterController playerInstance;
+	private MazeTower mazeTowerInstance;
 
     void Start()
     {
@@ -16,20 +18,29 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
         }
     }
 
 	private void BeginGame () {
-		mazeInstance = Instantiate(mazePrefab) as Maze;
-        StartCoroutine(mazeInstance.Generate());
+		mazeTowerInstance = Instantiate(mazeTowerPrefab) as MazeTower;
+        playerInstance = Instantiate(playerPrefab) as CharacterController;
+        mazeTowerInstance.player = playerInstance;
+
+        Maze firstMaze = mazeTowerInstance.GenerateNewMaze();
+		playerInstance.SetLocation(firstMaze.GetCell(firstMaze.RandomCoordinates()));
 	}
 
 	private void RestartGame () {
         StopAllCoroutines();
-		Destroy(mazeInstance.gameObject);
+		Destroy(mazeTowerInstance.gameObject);
+
+        if (playerInstance != null) {
+			Destroy(playerInstance.gameObject);
+		}
+
 		BeginGame();
 	}
 }

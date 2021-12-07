@@ -21,6 +21,20 @@ public class MazeCell : MonoBehaviour
 		return edges[(int)direction];
 	}
 
+    public void OnCell()
+    {
+        foreach (MazeCellEdge edge in edges)
+        {
+            if(edge is MazeDoor)
+            {
+                if(!((MazeDoor)edge).isOpen)
+                {
+                    ((MazeDoor)edge).OpenDoor();
+                }
+            }
+        }
+    }
+
 	public void SetEdge (MazeDirection direction, MazeCellEdge edge)
     {
 		edges[(int)direction] = edge;

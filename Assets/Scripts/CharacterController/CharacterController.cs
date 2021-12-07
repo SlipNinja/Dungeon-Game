@@ -15,6 +15,8 @@ public class CharacterController : MonoBehaviour
 
     [Header("Camera")]
     public float mouseSensitivity = 100f;
+    public int currentFloor;
+    public MazeCell currentCell;
 
     Rigidbody myRigidbody;
     ConstantForce myConstantForce;
@@ -24,6 +26,7 @@ public class CharacterController : MonoBehaviour
     Vector3 customGravity = new Vector3(0, -9.81f, 0);
     bool isGrounded = false;
     bool jumpCommand;
+
     #endregion
 
     #region MonoBehaviour
@@ -41,8 +44,14 @@ public class CharacterController : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundChecker.position, groundCheckRadius, groundMask);
-
         CharacterMovement();
+        
+        currentCell = GetCurrentCell();
+        if(currentCell)
+        {
+            currentCell.OnCell();  
+        }
+        
     }
 
     private void OnDrawGizmosSelected()
@@ -94,6 +103,29 @@ public class CharacterController : MonoBehaviour
         {
             myConstantForce.force = customGravity;
         }
+    }
+    
+    // Set the player position on a cell.
+    public void SetLocation(MazeCell cell)
+    {
+        Vector3 newPos = new Vector3(cell.transform.position.x, 1f, cell.transform.position.z);
+        transform.position = newPos;
+    }
+
+    // Returns player's current cell or null if not on a cell.
+    private MazeCell GetCurrentCell()
+    {
+        MazeCell cell;
+        RaycastHit hit;
+        LayerMask layerIgnore = LayerMask.NameToLayer("Player");
+
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, 20f, layerIgnore))
+        {
+            cell = hit.transform.parent.GetComponent<MazeCell>();
+            return cell;
+        }
+
+        return null;
     }
     #endregion
 

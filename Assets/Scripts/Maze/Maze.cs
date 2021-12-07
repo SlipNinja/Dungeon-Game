@@ -10,27 +10,32 @@ public class Maze : MonoBehaviour
 	public MazeWall wallPrefab;
 	public MazeCell cellPrefab;
 	public MazeDoor doorPrefab;
+	public int floor;
 
 	private float doorProbability = 0.05f;
 	private MazeCell[,] cells;
-    private float cellSizeX, cellSizeZ;
+    public float cellSizeX, cellSizeZ;
 	private float generationStepDelay = 0.0001f;
 	private List<MazeRoom> rooms = new List<MazeRoom>();
-	
-
-    void Awake()
-    {
-        MazeCell tmpCell = Instantiate(cellPrefab) as MazeCell;
-        cellSizeX = tmpCell.transform.Find("floor").GetComponent<Renderer>().bounds.size.x;
-        cellSizeZ = tmpCell.transform.Find("floor").GetComponent<Renderer>().bounds.size.z;
-        Destroy(tmpCell.gameObject);
-    }
 
     public MazeCell GetCell (Vector2Int coordinates) {
 		return cells[coordinates.x, coordinates.y];
 	}
 
-    public IEnumerator Generate () {
+    // public IEnumerator Generate () {
+	// 	WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
+	// 	cells = new MazeCell[size.x, size.y];
+
+    //     List<MazeCell> activeCells = new List<MazeCell>();
+	// 	DoFirstGenerationStep(activeCells);
+
+	// 	while (activeCells.Count > 0) {
+	// 		yield return delay;
+	// 		DoNextGenerationStep(activeCells);
+	// 	}
+	// }
+
+	public void Generate() {
 		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		cells = new MazeCell[size.x, size.y];
 
@@ -38,7 +43,6 @@ public class Maze : MonoBehaviour
 		DoFirstGenerationStep(activeCells);
 
 		while (activeCells.Count > 0) {
-			yield return delay;
 			DoNextGenerationStep(activeCells);
 		}
 	}
@@ -84,7 +88,7 @@ public class Maze : MonoBehaviour
 		passage.Initialize(cell, otherCell, direction);
 		passage = Instantiate(passagePrefab) as MazePassage;
 		passage.Initialize(otherCell, cell, direction.GetOpposite());
-		
+
 		if (cell.room != otherCell.room)
 		{
 			MazeRoom roomToAssimilate = otherCell.room;

@@ -12,13 +12,8 @@ public abstract class MazeCellEdge : MonoBehaviour {
 		this.otherCell = otherCell;
 		this.direction = direction;
 		cell.SetEdge(direction, this);
-		// if(otherCell != null)
-		// {
-		// 	otherCell.SetEdge(direction.GetOpposite(), this);
-		// }
 		transform.parent = cell.transform;
 		transform.localPosition = Vector3.zero;
 		transform.localRotation = direction.ToRotation();
 	}
-	
 }
