@@ -105,11 +105,12 @@ public class WeaponControl : MonoBehaviour
 
    void PistolFire()
     {
+        Vector3 dir = bulletSpawn.transform.TransformDirection(new Vector3(ReturnRandom(), ReturnRandom(), 1));
         for (int i = 0; i < bulletPool.Count; i++)
         {
             if (!bulletPool[i].gameObject.activeInHierarchy)
             {
-                bulletPool[i].Fire(bulletSpawn.position, bulletSpawn.transform.forward , currentWeapon.data.weaponData);
+                bulletPool[i].Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
                 shootCommand = false;
                 return;
             }
@@ -117,11 +118,7 @@ public class WeaponControl : MonoBehaviour
         BulletComponent temp = Instantiate(myBulletType).GetComponent<BulletComponent>();
         bulletPool.Add(temp);
 
-        Vector3 dir = bulletSpawn.transform.TransformDirection(new Vector3(ReturnRandom(), ReturnRandom(), 1));
-        Debug.Log(dir);
-        Debug.Log(bulletSpawn.transform.forward);   
-        Debug.DrawRay(bulletSpawn.position, bulletSpawn.transform.forward, Color.blue, 1);
-        Debug.DrawRay(bulletSpawn.position, dir, Color.red, 1);
+        
       //  Debug.Break();
         temp.Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
     }
