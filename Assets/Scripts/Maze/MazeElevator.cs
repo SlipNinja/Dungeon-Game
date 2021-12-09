@@ -12,7 +12,7 @@ public class MazeElevator : MonoBehaviour
     public float maxHeight;
     public float minHeight;
 
-    private float moveSpeed = 0.1f;
+    private float moveSpeed = 0.5f;
     private Vector3 move;
     private Transform player;
     private MazeCell upperCell;
@@ -21,7 +21,6 @@ public class MazeElevator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        move = platform.transform.up * Time.deltaTime * moveSpeed;
         player = GameObject.Find("Player").transform;
     }
 
@@ -35,6 +34,9 @@ public class MazeElevator : MonoBehaviour
 
         else if(!done)
         {
+
+            move = platform.transform.up * Time.deltaTime * moveSpeed;
+
             if(platform.playerOnPlatform)
             {
                 player.SetParent(platform.transform);
