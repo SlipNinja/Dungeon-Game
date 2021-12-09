@@ -45,7 +45,7 @@ public class MazeElevator : MonoBehaviour
                     // At the top
                     //Debug.Log("AT THE TOP");
                     upperCell.gameObject.SetActive(true);
-                    player.GetComponent<CharacterController>().currentFloor += 1;
+                    player.GetComponent<CharacterControl>().currentFloor += 1;
                     done = true;
                 }
                 
