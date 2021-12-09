@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public CharacterController characterController;
+    public CharacterControl characterController;
 
     public WeaponControl weaponControl;
 

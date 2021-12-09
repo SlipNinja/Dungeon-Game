@@ -6,9 +6,9 @@ public class GameManager : MonoBehaviour
 {
 
     public MazeTower mazeTowerPrefab;
-    public CharacterController playerPrefab;
+    public CharacterControl playerPrefab;
 
-	private CharacterController playerInstance;
+	private CharacterControl playerInstance;
 	private MazeTower mazeTowerInstance;
 
     void Start()
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
 	private void BeginGame () {
 		mazeTowerInstance = Instantiate(mazeTowerPrefab) as MazeTower;
-        playerInstance = Instantiate(playerPrefab) as CharacterController;
+        playerInstance = Instantiate(playerPrefab) as CharacterControl;
         playerInstance.name = "Player";
         mazeTowerInstance.player = playerInstance;
 

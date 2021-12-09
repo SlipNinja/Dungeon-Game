@@ -12,7 +12,7 @@ public class MazeTower : MonoBehaviour
     private int floor = 0;
     private List<Maze> mazes;
     private float cellSizeX, cellSizeZ, wallHeight;
-    public CharacterController player;
+    public CharacterControl player;
 
     private bool removingMazes = false;
 

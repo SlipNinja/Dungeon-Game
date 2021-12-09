@@ -339,6 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae0fcacd7d8c464bb488d4784e2d893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeTowerPrefab: {fileID: 4899175120892032006, guid: c4e3b44d07ff6ff489079eb627f580a7, type: 3}
+  playerPrefab: {fileID: 8900087671383322818, guid: d08c85e7ce00d90428d7278fc88dc723, type: 3}
 --- !u!4 &1464554643
 Transform:
   m_ObjectHideFlags: 0

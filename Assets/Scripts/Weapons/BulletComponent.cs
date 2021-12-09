@@ -27,7 +27,7 @@ public class BulletComponent : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void Fire(Vector3 position, Vector3 direction , WeaponData myData)
+    public void Fire(Vector3 position, Vector3 direction , WeaponData myData   )
     {
 
         this.gameObject.SetActive(true);
@@ -35,7 +35,13 @@ public class BulletComponent : MonoBehaviour
         myRigidbody.velocity = (direction.normalized * myData.speed);
     }
 
-    
+    public void Fire(Vector3 position, Vector3 direction, float speed)
+    {
+
+        this.gameObject.SetActive(true);
+        this.transform.position = position;
+        myRigidbody.velocity = (direction.normalized * speed);
+    }
 
 
     IEnumerator Cooldown()
