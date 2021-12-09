@@ -17,8 +17,9 @@ public class Maze : MonoBehaviour
 	private float doorProbability = 0.05f;
 	private MazeCell[,] cells;
     public float cellSizeX, cellSizeZ, wallHeight;
-	private float generationStepDelay = 0.0001f;
+	//private float generationStepDelay = 0.0001f;
 	private List<MazeRoom> rooms = new List<MazeRoom>();
+	private MazeTower tower;
 
     public MazeCell GetCell (Vector2Int coordinates) {
 		return cells[coordinates.x, coordinates.y];
@@ -38,8 +39,8 @@ public class Maze : MonoBehaviour
 	// }
 
 	public void Generate() {
-		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
 		cells = new MazeCell[size.x, size.y];
+		tower = transform.GetComponentInParent<MazeTower>();
 
         List<MazeCell> activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
@@ -56,6 +57,14 @@ public class Maze : MonoBehaviour
 		float floorOffset = 0.2f;
 		Vector2Int exitCoord = RandomCoordinates();
 		MazeCell exitCell = GetCell(exitCoord);
+
+		// Doors block elevator
+		while(exitCell.HasEdgeDoor())
+		{
+			exitCoord = RandomCoordinates();
+			exitCell = GetCell(exitCoord);
+		}
+
 		Vector3 elevatorPos = exitCell.transform.position;
 
 		elevatorInstance = Instantiate(elevatorPrefab) as MazeElevator;
@@ -64,8 +73,6 @@ public class Maze : MonoBehaviour
 		elevatorInstance.minHeight = exitCell.transform.position.y + floorOffset;
 		elevatorInstance.transform.SetParent(transform);
 		elevatorInstance.transform.position = elevatorPos;
-
-		Debug.Log("Created elevator at coordinates " + exitCoord.x + ":" + exitCoord.y + " --- Floor : " + floor);
 	}
 
 	private MazeCell CreateCell (Vector2Int coords) {
@@ -143,8 +150,17 @@ public class Maze : MonoBehaviour
 	}
 
     private void DoFirstGenerationStep (List<MazeCell> activeCells) {
-		MazeCell newCell = CreateCell(RandomCoordinates());
+		Vector2Int randCoords = RandomCoordinates();
+		MazeCell newCell = CreateCell(randCoords);
 		newCell.Initialize(CreateRoom(-1));
+
+		// Get floor material into ceiling
+		Maze lowerMaze = tower.GetMaze(floor-1);
+		if(lowerMaze)
+		{
+			newCell.InitializeCeiling(lowerMaze.GetCell(randCoords).room.settings.floorMaterial);
+		}
+
 		activeCells.Add(newCell);
 	}
 
@@ -167,6 +183,14 @@ public class Maze : MonoBehaviour
 			if (neighbor == null) {
 				neighbor = CreateCell(coordinates);
 				CreatePassage(currentCell, neighbor, direction);
+
+				// Get floor material into ceiling
+				Maze lowerMaze = tower.GetMaze(floor-1);
+				if(lowerMaze)
+				{
+					neighbor.InitializeCeiling(lowerMaze.GetCell(coordinates).room.settings.floorMaterial);
+				}
+				
 				activeCells.Add(neighbor);
 			}
 

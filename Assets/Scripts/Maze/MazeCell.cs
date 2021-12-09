@@ -17,12 +17,30 @@ public class MazeCell : MonoBehaviour
 		transform.GetChild(0).GetComponent<Renderer>().material = room.settings.floorMaterial;
 	}
 
+    public void InitializeCeiling(Material mat)
+    {
+        transform.GetChild(1).GetComponent<Renderer>().material =  mat;
+    }
+
 	public MazeCellEdge GetEdge (MazeDirection direction)
     {
 		return edges[(int)direction];
 	}
 
-    public void SetFloorVisibility(bool state)
+    public bool HasEdgeDoor()
+    {
+        foreach (MazeCellEdge edge in edges)
+        {
+            if(edge is MazeDoor)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void SetFloor(bool state)
     {
         floor.gameObject.SetActive(state);
         ceiling.gameObject.SetActive(state);

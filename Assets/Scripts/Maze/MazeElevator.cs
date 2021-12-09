@@ -43,9 +43,10 @@ public class MazeElevator : MonoBehaviour
                 if(platform.transform.position.y >= maxHeight)
                 {
                     // At the top
-                    upperCell.SetFloorVisibility(true);
+                    upperCell.SetFloor(true);
                     player.GetComponent<CharacterControl>().currentFloor += 1;
                     done = true;
+                    Destroy(gameObject);
                 }
                 
                 else
@@ -60,7 +61,7 @@ public class MazeElevator : MonoBehaviour
                 if(platform.transform.position.y <= minHeight)
                 {
                     // At the bottom
-                    upperCell.SetFloorVisibility(false);
+                    upperCell.SetFloor(false);
                 }
 
                 else

@@ -45,14 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSettings:
-  - floorMaterial: {fileID: 2100000, guid: fd4f4670e069a5f41b8eda7f51b79a12, type: 2}
-    wallMaterial: {fileID: 2100000, guid: fd4f4670e069a5f41b8eda7f51b79a12, type: 2}
-  - floorMaterial: {fileID: 2100000, guid: 3c0692a665e2b484e9b7559a5fef95b1, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 3c0692a665e2b484e9b7559a5fef95b1, type: 2}
-  - floorMaterial: {fileID: 2100000, guid: ba1753b505871c64e98680c0510d5c7f, type: 2}
-    wallMaterial: {fileID: 2100000, guid: ba1753b505871c64e98680c0510d5c7f, type: 2}
-  - floorMaterial: {fileID: 2100000, guid: 3ab8b84b331cdd24a8c521b1423e9f33, type: 2}
-    wallMaterial: {fileID: 2100000, guid: 3ab8b84b331cdd24a8c521b1423e9f33, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: 378426c27b3a38f4f9e38126b22973fc, type: 2}
+    wallMaterial: {fileID: 2100000, guid: d7345edb353d0794296950a9adb3ad4d, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: e2782bd09fb749e4f8c457cb9c8cc6cd, type: 2}
+    wallMaterial: {fileID: 2100000, guid: b45a15fff385e4a46ab2bf7a9b0214e8, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: 7f46efa3bb98bb44ea780a4a417b4f75, type: 2}
+    wallMaterial: {fileID: 2100000, guid: ebabfdf81fc72414f9921cfe2ed4b652, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: 118675f9ee3b22c43a2f8841d6206b1b, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 78f6c3f1d47eef84f9ee5e607fad4c0c, type: 2}
   size: {x: 6, y: 6}
   passagePrefab: {fileID: 2555456290832689423, guid: c3e5fad66a7cc894796985c0f1d76641, type: 3}
   wallPrefab: {fileID: 2865029041917179286, guid: 5a2544ee37b806b4bb256a4dabba9d56, type: 3}
