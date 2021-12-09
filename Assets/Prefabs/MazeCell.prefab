@@ -242,5 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f86c3fa6dbd71f4b9333e2aceb515e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floor: {fileID: 4315038384102521065}
+  ceiling: {fileID: 2260559967399342280}
   coordinates: {x: 0, y: 0}
   room: {fileID: 0}

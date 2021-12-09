@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6023397202285719961}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4125, y: 0.5, z: 0.49}
+  m_LocalPosition: {x: -0.4125, y: 0.5, z: 0.475}
   m_LocalScale: {x: 0.225, y: 1, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -236,7 +236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6023397202666230200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4125, y: 0.5, z: 0.49}
+  m_LocalPosition: {x: 0.4125, y: 0.5, z: 0.475}
   m_LocalScale: {x: 0.225, y: 1, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -333,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6023397203170737058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0.49}
+  m_LocalPosition: {x: 0, y: 0.025, z: 0.475}
   m_LocalScale: {x: 1, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -456,6 +456,7 @@ MonoBehaviour:
   otherCell: {fileID: 0}
   direction: 0
   hinge: {fileID: 6023397203879093264}
+  isOpen: 0
 --- !u!1 &6023397203333880206
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6023397203333880206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.95, z: 0.49}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0.475}
   m_LocalScale: {x: 1, y: 0.1, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []

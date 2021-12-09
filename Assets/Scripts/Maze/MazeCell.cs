@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MazeCell : MonoBehaviour
 {
+    public Transform floor, ceiling;
     public Vector2Int coordinates;
     public MazeRoom room;
 	
@@ -20,6 +21,12 @@ public class MazeCell : MonoBehaviour
     {
 		return edges[(int)direction];
 	}
+
+    public void SetFloorVisibility(bool state)
+    {
+        floor.gameObject.SetActive(state);
+        ceiling.gameObject.SetActive(state);
+    }
 
     public void OnCell()
     {

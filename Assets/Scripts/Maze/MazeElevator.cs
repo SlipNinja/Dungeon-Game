@@ -12,7 +12,7 @@ public class MazeElevator : MonoBehaviour
     public float maxHeight;
     public float minHeight;
 
-    private float moveSpeed = 0.5f;
+    private float moveSpeed = 1f;
     private Vector3 move;
     private Transform player;
     private MazeCell upperCell;
@@ -43,8 +43,7 @@ public class MazeElevator : MonoBehaviour
                 if(platform.transform.position.y >= maxHeight)
                 {
                     // At the top
-                    //Debug.Log("AT THE TOP");
-                    upperCell.gameObject.SetActive(true);
+                    upperCell.SetFloorVisibility(true);
                     player.GetComponent<CharacterControl>().currentFloor += 1;
                     done = true;
                 }
@@ -61,8 +60,7 @@ public class MazeElevator : MonoBehaviour
                 if(platform.transform.position.y <= minHeight)
                 {
                     // At the bottom
-                    //Debug.Log("AT THE BOTTOM");
-                    upperCell.gameObject.SetActive(false);
+                    upperCell.SetFloorVisibility(false);
                 }
 
                 else
@@ -84,20 +82,16 @@ public class MazeElevator : MonoBehaviour
         if(m)
         {
             upperCell = m.GetCell(coordinates);
-            //Debug.Log("CELL " + upperCell.coordinates.x + ":" + upperCell.coordinates.y);
         }
     }
 
     private void MoveUp()
     {
         platform.transform.position += move;
-        //player.GetComponent<CharacterController>().elevatorVelocity = move.y;
-        // player.GetComponent<CharacterController>().elevatorVelocity = platform.GetComponent<Rigidbody>().velocity.y;
     }
 
     private void MoveDown()
     {
         platform.transform.position -= move;
-        //player.GetComponent<CharacterController>().elevatorVelocity = 0f;
     }
 }

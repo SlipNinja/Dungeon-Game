@@ -21,12 +21,12 @@ public class MazeTower : MonoBehaviour
         mazes = new List<Maze>();
 
         MazeCell tmpCell = Instantiate(cellPrefab) as MazeCell;
-        cellSizeX = tmpCell.transform.Find("floor").GetComponent<Renderer>().bounds.size.x;
-        cellSizeZ = tmpCell.transform.Find("floor").GetComponent<Renderer>().bounds.size.z;
+        cellSizeX = tmpCell.floor.GetComponent<Renderer>().bounds.size.x;
+        cellSizeZ = tmpCell.floor.GetComponent<Renderer>().bounds.size.z;
         Destroy(tmpCell.gameObject);
 
         MazeWall tmpWall = Instantiate(wallPrefab) as MazeWall;
-        wallHeight = tmpWall.transform.Find("wall").GetComponent<Renderer>().bounds.size.y;
+        wallHeight = tmpWall.transform.Find("wall").GetComponent<Renderer>().bounds.size.y + 0.01f;
         Destroy(tmpWall.gameObject);
     }
 
@@ -37,7 +37,7 @@ public class MazeTower : MonoBehaviour
             StartCoroutine(RemovePastMazes());
         }
 
-        if(player.currentFloor >= floor-1)// always 2 floors
+        if(player.currentFloor >= floor-2)// always 3 floors
         {
             GenerateNewMaze();
         }
