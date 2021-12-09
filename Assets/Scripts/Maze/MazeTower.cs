@@ -12,7 +12,6 @@ public class MazeTower : MonoBehaviour
     private int floor = 0;
     private List<Maze> mazes;
     private float cellSizeX, cellSizeZ, wallHeight;
-    private int currentMazeIndex = 0;
     public CharacterController player;
 
     private bool removingMazes = false;
@@ -42,11 +41,6 @@ public class MazeTower : MonoBehaviour
         {
             GenerateNewMaze();
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            player.currentFloor ++;
-        }
     }
 
     private IEnumerator RemovePastMazes()
@@ -70,13 +64,13 @@ public class MazeTower : MonoBehaviour
 
     public Maze GenerateNewMaze()
     {
-        Debug.Log("Generating new Maze");
         Vector3 newMazePos = new Vector3(0f, wallHeight * floor, 0f);
         Maze newMaze = Instantiate(mazePrefab) as Maze;
         newMaze.transform.SetParent(transform);
         newMaze.transform.position = newMazePos;
         newMaze.cellSizeX = cellSizeX;
         newMaze.cellSizeZ = cellSizeZ;
+        newMaze.wallHeight = wallHeight;
         newMaze.floor = floor;
         newMaze.Generate();
 
@@ -95,18 +89,21 @@ public class MazeTower : MonoBehaviour
 
     }
 
-    public Maze GetMaze(int index)
+    public Maze GetMaze(int floorMaze)
     {
-        return mazes.ElementAt(index);
-    }
+        foreach (Maze m in mazes)
+        {
+            if(m.floor == floorMaze)
+            {
+                return m;
+            }
+        }
 
-    public int GetCurrentMazeIndex()
-    {
-        return currentMazeIndex;
+        return null;
     }
 
     public int GetCurrentFloor()
     {
-        return floor;
+        return player.currentFloor;
     }
 }

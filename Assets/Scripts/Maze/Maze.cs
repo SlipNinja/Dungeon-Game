@@ -10,11 +10,13 @@ public class Maze : MonoBehaviour
 	public MazeWall wallPrefab;
 	public MazeCell cellPrefab;
 	public MazeDoor doorPrefab;
+	public MazeElevator elevatorPrefab;
 	public int floor;
 
+	private MazeElevator elevatorInstance;
 	private float doorProbability = 0.05f;
 	private MazeCell[,] cells;
-    public float cellSizeX, cellSizeZ;
+    public float cellSizeX, cellSizeZ, wallHeight;
 	private float generationStepDelay = 0.0001f;
 	private List<MazeRoom> rooms = new List<MazeRoom>();
 
@@ -45,6 +47,25 @@ public class Maze : MonoBehaviour
 		while (activeCells.Count > 0) {
 			DoNextGenerationStep(activeCells);
 		}
+
+		AddRandomElevator();
+	}
+
+	public void AddRandomElevator()
+	{
+		float floorOffset = 0.2f;
+		Vector2Int exitCoord = RandomCoordinates();
+		MazeCell exitCell = GetCell(exitCoord);
+		Vector3 elevatorPos = exitCell.transform.position;
+
+		elevatorInstance = Instantiate(elevatorPrefab) as MazeElevator;
+		elevatorInstance.coordinates = exitCoord;
+		elevatorInstance.maxHeight = exitCell.transform.position.y + wallHeight + floorOffset;
+		elevatorInstance.minHeight = exitCell.transform.position.y + floorOffset;
+		elevatorInstance.transform.SetParent(transform);
+		elevatorInstance.transform.position = elevatorPos;
+
+		Debug.Log("Created elevator at coordinates " + exitCoord.x + ":" + exitCoord.y + " --- Floor : " + floor);
 	}
 
 	private MazeCell CreateCell (Vector2Int coords) {

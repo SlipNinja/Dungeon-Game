@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 	private void BeginGame () {
 		mazeTowerInstance = Instantiate(mazeTowerPrefab) as MazeTower;
         playerInstance = Instantiate(playerPrefab) as CharacterController;
+        playerInstance.name = "Player";
         mazeTowerInstance.player = playerInstance;
 
         Maze firstMaze = mazeTowerInstance.GenerateNewMaze();
