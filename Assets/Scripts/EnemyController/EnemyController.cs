@@ -58,21 +58,44 @@ public class EnemyController : MonoBehaviour
         if (timer < firingRate)
             return;
         timer = 0;
-        for (int i = 0; i < bulletPool.Count; i++)
+      
+
+        if (PoolManager.instance)
         {
-            if (!bulletPool[i].gameObject.activeInHierarchy)
+            for (int i = 0; i < PoolManager.instance.bulletPool.Count; i++)
             {
-                bulletPool[i].Fire(bulletSpawn.position, temp, 10);
+                if (!PoolManager.instance.bulletPool[i].gameObject.activeInHierarchy)
+                {
+                    PoolManager.instance.bulletPool[i].Fire(bulletSpawn.position, temp, 10);
 
-                return;
+                    return;
+                }
             }
+            BulletComponent go = Instantiate(myBulletType).GetComponent<BulletComponent>();
+            PoolManager.instance.bulletPool.Add(go);
+
+
+            //  Debug.Break();
+            go.Fire(bulletSpawn.position, temp, 10);
         }
-        BulletComponent go = Instantiate(myBulletType).GetComponent<BulletComponent>();
-        bulletPool.Add(go);
+        else
+        {
+            for (int i = 0; i < bulletPool.Count; i++)
+            {
+                if (!bulletPool[i].gameObject.activeInHierarchy)
+                {
+                    bulletPool[i].Fire(bulletSpawn.position, temp, 10);
+
+                    return;
+                }
+            }
+            BulletComponent go = Instantiate(myBulletType).GetComponent<BulletComponent>();
+            bulletPool.Add(go);
 
 
-        //  Debug.Break();
-        go.Fire(bulletSpawn.position, temp, 10);
+            //  Debug.Break();
+            go.Fire(bulletSpawn.position, temp, 10);
+        }
 
     }
 

@@ -7,7 +7,7 @@ public class BulletComponent : MonoBehaviour
     #region Variables
     public Rigidbody myRigidbody;
 
-    
+
     int bounce;
     #endregion
 
@@ -19,15 +19,19 @@ public class BulletComponent : MonoBehaviour
     #endregion
 
     #region Methods
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.attachedRigidbody)
-            return;
-     
-        this.gameObject.SetActive(false);
+        if ( collision.GetComponentInChildren<HealthComponent>())
+        {
+            HealthComponent temp = collision.GetComponentInChildren<HealthComponent>();
+
+            temp.ReceiveDamage();
+        }
+
+            this.gameObject.SetActive(false);
     }
 
-    public void Fire(Vector3 position, Vector3 direction , WeaponData myData   )
+    public void Fire(Vector3 position, Vector3 direction, WeaponData myData)
     {
 
         this.gameObject.SetActive(true);

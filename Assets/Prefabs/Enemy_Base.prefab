@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796654192}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 0.09, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06439151, y: 0.06439161, z: 0.5}
+  m_LocalScale: {x: 0.7154612, y: 0.7154612, z: 0.7154612}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1112026142398644811}
-  m_RootOrder: 1
+  m_Father: {fileID: 1112026140851355235}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1112026140851355234
 GameObject:
@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 1112026140851355235}
   - component: {fileID: 1112026140851355232}
   - component: {fileID: 1112026140851355233}
-  m_Layer: 8
+  - component: {fileID: 1500219707}
+  m_Layer: 11
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +61,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3977, y: 1.3977, z: 1.3977}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1796654193}
   m_Father: {fileID: 1112026142398644811}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,6 +131,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.24, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1500219707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112026140851355234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e2799c6fe14554a99fc3be17b0861e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 10
+  curHealthPoints: 0
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1112026142398644801}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  damageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1112026142398644801
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +194,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1112026140851355235}
-  - {fileID: 1796654193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

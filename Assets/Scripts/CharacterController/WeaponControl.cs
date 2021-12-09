@@ -106,21 +106,40 @@ public class WeaponControl : MonoBehaviour
    void PistolFire()
     {
         Vector3 dir = bulletSpawn.transform.TransformDirection(new Vector3(ReturnRandom(), ReturnRandom(), 1));
-        for (int i = 0; i < bulletPool.Count; i++)
+        if (PoolManager.instance)
         {
-            if (!bulletPool[i].gameObject.activeInHierarchy)
+            for (int i = 0; i < PoolManager.instance.bulletPool.Count; i++)
             {
-                bulletPool[i].Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
-                shootCommand = false;
-                return;
+                if (!PoolManager.instance.bulletPool[i].gameObject.activeInHierarchy)
+                {
+                    PoolManager.instance.bulletPool[i].Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+                    shootCommand = false;
+                    return;
+                }
             }
+            BulletComponent temp = Instantiate(myBulletType).GetComponent<BulletComponent>();
+            PoolManager.instance.bulletPool.Add(temp);
+            temp.Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
         }
-        BulletComponent temp = Instantiate(myBulletType).GetComponent<BulletComponent>();
-        bulletPool.Add(temp);
+        else
+        {
+            for (int i = 0; i < bulletPool.Count; i++)
+            {
+                if (!bulletPool[i].gameObject.activeInHierarchy)
+                {
+                    bulletPool[i].Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+                    shootCommand = false;
+                    return;
+                }
+            }
+            BulletComponent temp = Instantiate(myBulletType).GetComponent<BulletComponent>();
+            bulletPool.Add(temp);
+            temp.Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+        }
 
         
       //  Debug.Break();
-        temp.Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+       
     }
 
     IEnumerator SemiautomticFire()
