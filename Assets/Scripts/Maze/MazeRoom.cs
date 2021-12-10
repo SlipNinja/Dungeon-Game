@@ -36,6 +36,16 @@ public class MazeRoom : ScriptableObject {
 		return noDoorsCells;
 	}
 
+	public int Size()
+	{
+		return cells.Count;
+	}
+
+	private List<MazeCell> GetOneWallCells()
+	{
+		return new List<MazeCell>();
+	}
+
 	public bool Contains(MazeCell cell)
 	{
 		return cells.Contains(cell);
