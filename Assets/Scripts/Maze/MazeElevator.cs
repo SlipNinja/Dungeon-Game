@@ -51,6 +51,7 @@ public class MazeElevator : MonoBehaviour
                 
                 else
                 {
+                    upperCell.SetFloor(false);
                     MoveUp();
                 }
             }
@@ -58,17 +59,12 @@ public class MazeElevator : MonoBehaviour
             else
             {
                 player.SetParent(null);
-                if(platform.transform.position.y <= minHeight)
-                {
-                    // At the bottom
-                    upperCell.SetFloor(false);
-                }
+                upperCell.SetFloor(true);
 
-                else
+                if(platform.transform.position.y > minHeight)
                 {
                     MoveDown();
                 }
-                
             }
         }
     }

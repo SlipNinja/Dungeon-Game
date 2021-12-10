@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Maze : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class Maze : MonoBehaviour
 	//private float generationStepDelay = 0.0001f;
 	private List<MazeRoom> rooms = new List<MazeRoom>();
 	private MazeTower tower;
+	private static Vector2Int lastExitCoord = new Vector2Int(-1, -1);
 
     public MazeCell GetCell (Vector2Int coordinates) {
 		return cells[coordinates.x, coordinates.y];
@@ -55,20 +57,23 @@ public class Maze : MonoBehaviour
 	public void AddRandomElevator()
 	{
 		float floorOffset = 0.2f;
-		Vector2Int exitCoord = RandomCoordinates();
-		MazeCell exitCell = GetCell(exitCoord);
+		List<MazeCell> availableCells = new List<MazeCell>();
 
-		// Doors block elevator
-		while(exitCell.HasEdgeDoor())
+		foreach (MazeRoom r in rooms)
 		{
-			exitCoord = RandomCoordinates();
-			exitCell = GetCell(exitCoord);
+			if(!r.Contains(lastExitCoord))
+			{
+				availableCells.AddRange(r.GetCellsWithoutDoor());
+			}
 		}
+
+		MazeCell exitCell = availableCells.ElementAt(Random.Range(0, availableCells.Count));
+		lastExitCoord = exitCell.coordinates;
 
 		Vector3 elevatorPos = exitCell.transform.position;
 
 		elevatorInstance = Instantiate(elevatorPrefab) as MazeElevator;
-		elevatorInstance.coordinates = exitCoord;
+		elevatorInstance.coordinates = exitCell.coordinates;
 		elevatorInstance.maxHeight = exitCell.transform.position.y + wallHeight + floorOffset;
 		elevatorInstance.minHeight = exitCell.transform.position.y + floorOffset;
 		elevatorInstance.transform.SetParent(transform);

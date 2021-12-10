@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MazeRoom : ScriptableObject {
 
@@ -18,5 +19,38 @@ public class MazeRoom : ScriptableObject {
         for (int i = 0; i < room.cells.Count; i++) {
             Add(room.cells[i]);
         }
+	}
+
+	public List<MazeCell> GetCellsWithoutDoor()
+	{
+		List<MazeCell> noDoorsCells = new List<MazeCell>();
+
+		foreach (MazeCell cell in cells)
+		{
+			if(!cell.HasEdgeDoor())
+			{
+				noDoorsCells.Add(cell);
+			}
+		}
+
+		return noDoorsCells;
+	}
+
+	public bool Contains(MazeCell cell)
+	{
+		return cells.Contains(cell);
+	}
+
+	public bool Contains(Vector2Int coords)
+	{
+		foreach (MazeCell c in cells)
+		{
+			if(c.coordinates == coords)
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
