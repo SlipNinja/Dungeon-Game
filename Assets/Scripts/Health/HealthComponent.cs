@@ -13,12 +13,6 @@ public class HealthComponent : MonoBehaviour
     public void Awake()
     {
         curHealthPoints = maxHealthPoints;
-        InterfaceHandler.SetMaxSliderValue(maxHealthPoints);
-    }
-
-    void Update()
-    {
-        InterfaceHandler.SetSliderValue(curHealthPoints);
     }
 
     public void ReceiveDamage(int value = 1)
