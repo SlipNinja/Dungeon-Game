@@ -17,11 +17,13 @@ public class MazeElevator : MonoBehaviour
     private Transform player;
     private MazeCell upperCell;
     private bool done = false;
+    private InterfaceHandler playerInterface;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").transform;
+        playerInterface = GameObject.Find("UserInterface").GetComponent<InterfaceHandler>();
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class MazeElevator : MonoBehaviour
                     // At the top
                     upperCell.SetFloor(true);
                     player.GetComponent<CharacterControl>().currentFloor += 1;
-                    InterfaceHandler.SetFloor(player.GetComponent<CharacterControl>().currentFloor);
+                    playerInterface.SetFloor(player.GetComponent<CharacterControl>().currentFloor);
                     done = true;
                     Destroy(gameObject);
                 }

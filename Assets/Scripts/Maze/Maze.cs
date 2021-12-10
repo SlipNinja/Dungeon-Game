@@ -68,6 +68,13 @@ public class Maze : MonoBehaviour
 		}
 
 		MazeCell exitCell = availableCells.ElementAt(Random.Range(0, availableCells.Count));
+
+		// Some tricky case when there's no cell with adequate placement.
+		if(!exitCell)
+		{
+			exitCell = GetCell(RandomCoordinates());
+		}
+
 		lastExitCoord = exitCell.coordinates;
 
 		Vector3 elevatorPos = exitCell.transform.position;

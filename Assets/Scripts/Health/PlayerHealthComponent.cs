@@ -1,13 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerHealthComponent : HealthComponent
 {
+
+    private InterfaceHandler playerInterface;
+
     void Start()
     {
-        InterfaceHandler.SetMaxSliderValue(maxHealthPoints);
+        playerInterface = GameObject.Find("UserInterface").GetComponent<InterfaceHandler>();
+        playerInterface.SetMaxSliderValue(maxHealthPoints);
     }
 
     void Update()
     {
-        InterfaceHandler.SetSliderValue(curHealthPoints);
+        playerInterface.SetSliderValue(curHealthPoints);
     }
 }

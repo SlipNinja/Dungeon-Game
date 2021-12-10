@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2733301952714894166}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -194,6 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a12a1182b2d70145be8c536e58241ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floor: {fileID: 1217066136650135551}
+  healthSlider: {fileID: 545738717033951775}
 --- !u!1 &4105968282385007129
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,11 +374,11 @@ RectTransform:
   - {fileID: 9129544966549867476}
   - {fileID: 637386037818547233}
   m_Father: {fileID: 2733301952714894166}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 0}
+  m_AnchoredPosition: {x: -350, y: 0.000030517578}
   m_SizeDelta: {x: 280, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &545738717033951775
@@ -460,8 +462,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4023924661460867258}
   - {fileID: 9128649309512884898}
+  - {fileID: 4023924661460867258}
   m_Father: {fileID: 2222195282770557885}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
