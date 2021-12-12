@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterControl : MonoBehaviour
 {
     #region Variables
+    public static CharacterControl instance;
     [Header("Movement")]
     public float speed = 10f;
     [Header("Jump")]
@@ -32,7 +33,8 @@ public class CharacterControl : MonoBehaviour
     #region MonoBehaviour
     private void Awake()
     {
-        myRigidbody = GetComponent<Rigidbody>();
+        instance = this;
+           myRigidbody = GetComponent<Rigidbody>();
         myConstantForce = GetComponent<ConstantForce>();
     }
     

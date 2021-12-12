@@ -20,12 +20,13 @@ public class EnemyController : MonoBehaviour
     public GameObject myBulletType;
     public Transform bulletSpawn;
     List<BulletComponent> bulletPool = new List<BulletComponent>();
-
+    HealthComponent myHealth;
     float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
-        myCharacterContreller = GetComponent<CharacterController>();
+        myHealth = GetComponentInChildren<HealthComponent>();
+           myCharacterContreller = GetComponent<CharacterController>();
         target = FindObjectOfType<CharacterControl>().transform;
         timer = firingRate;
     }
@@ -40,18 +41,19 @@ public class EnemyController : MonoBehaviour
 
     void CharacterMovement()
     {
-        if (Vector3.SqrMagnitude(target.position - this.transform.position) <= distance)
-            return;
-        temp = (target.position - this.transform.position).normalized;
-        myCharacterContreller.SimpleMove((temp + normal).normalized * speed);
+        
+        temp = (target.position - this.transform.position).normalized; 
 
         sprite.transform.rotation = Quaternion.LookRotation(temp);
+        if (Vector3.Distance(target.position ,this.transform.position) <= distance)
+            return;
+        myCharacterContreller.SimpleMove((temp + normal).normalized * speed);
 
     }
 
     void Combat()
     {
-        if (Vector3.SqrMagnitude(target.position - this.transform.position) < firingDistance)
+        if (Vector3.Distance(target.position , this.transform.position) > firingDistance)
             return;
         timer += Time.deltaTime;
 
@@ -101,6 +103,8 @@ public class EnemyController : MonoBehaviour
 
     void ObstacleAvoidance()
     {
+        if (Vector3.SqrMagnitude(target.position - this.transform.position) <= distance)
+            return;
         normal = Vector3.zero;
         RaycastHit hit;
         if (Physics.SphereCast(this.transform.position, radius, temp, out hit, avoidanceRange, groundMask))
@@ -112,5 +116,11 @@ public class EnemyController : MonoBehaviour
             return;
             // Debug.Break();
         }
+    }
+
+    public void RestartAgent()
+    {
+        this.gameObject.SetActive(true);
+        myHealth.RestoreHealth();
     }
 }

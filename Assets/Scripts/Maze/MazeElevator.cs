@@ -14,22 +14,21 @@ public class MazeElevator : MonoBehaviour
 
     private float moveSpeed = 1f;
     private Vector3 move;
-    private Transform player;
+    //rivate Transform player;
     private MazeCell upperCell;
     private bool done = false;
-    private InterfaceHandler playerInterface;
+   // private InterfaceHandler playerInterface;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
-        playerInterface = GameObject.Find("UserInterface").GetComponent<InterfaceHandler>();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!upperCell)
+        if (!upperCell)
         {
             GetUpperCell();
         }
@@ -41,14 +40,16 @@ public class MazeElevator : MonoBehaviour
 
             if(platform.playerOnPlatform)
             {
-                player.SetParent(platform.transform);
+                CharacterControl.instance.transform.SetParent(platform.transform);
                 if(platform.transform.position.y >= maxHeight)
                 {
                     // At the top
+                    
                     upperCell.SetFloor(true);
-                    player.GetComponent<CharacterControl>().currentFloor += 1;
-                    playerInterface.SetFloor(player.GetComponent<CharacterControl>().currentFloor);
+                    CharacterControl.instance.currentFloor += 1;
+                    InterfaceHandler.instance.SetFloor(CharacterControl.instance.currentFloor);
                     done = true;
+                    CharacterControl.instance.transform.SetParent(null);
                     Destroy(gameObject);
                 }
                 
@@ -61,7 +62,7 @@ public class MazeElevator : MonoBehaviour
             
             else
             {
-                player.SetParent(null);
+                CharacterControl.instance.transform.SetParent(null);
                 upperCell.SetFloor(true);
 
                 if(platform.transform.position.y > minHeight)

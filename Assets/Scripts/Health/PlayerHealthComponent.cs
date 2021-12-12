@@ -5,16 +5,18 @@ using UnityEngine;
 public class PlayerHealthComponent : HealthComponent
 {
 
-    private InterfaceHandler playerInterface;
-
     void Start()
     {
-        playerInterface = GameObject.Find("UserInterface").GetComponent<InterfaceHandler>();
-        playerInterface.SetMaxSliderValue(maxHealthPoints);
+        if (InterfaceHandler.instance == null)
+        {
+            this.enabled = false;
+            return;
+        }
+        InterfaceHandler.instance.SetMaxSliderValue(maxHealthPoints);
     }
 
     void Update()
     {
-        playerInterface.SetSliderValue(curHealthPoints);
+        InterfaceHandler.instance.SetSliderValue(curHealthPoints);
     }
 }

@@ -36,4 +36,9 @@ public class HealthComponent : MonoBehaviour
     {
         curHealthPoints = maxHealthPoints;
     }
+
+    public void DisableSelf()
+    {
+        this.transform.parent.gameObject.SetActive(false);
+    }
 }

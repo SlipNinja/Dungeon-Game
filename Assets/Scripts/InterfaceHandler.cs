@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class InterfaceHandler : MonoBehaviour
 {
+    public static InterfaceHandler instance;
     public Text floor;
     public Slider healthSlider;
-
+    private void Awake()
+    {
+        instance = this;
+    }
     public void SetSliderValue(int newValue)
     {
         healthSlider.value = newValue;
