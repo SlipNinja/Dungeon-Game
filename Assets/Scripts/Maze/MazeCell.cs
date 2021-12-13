@@ -22,6 +22,26 @@ public class MazeCell : MonoBehaviour
         transform.GetChild(1).GetComponent<Renderer>().material =  mat;
     }
 
+    public List<MazeWall> GetWalls()
+    {
+        List<MazeWall> walls = new List<MazeWall>();
+
+        foreach (MazeCellEdge edge in edges)
+        {
+            if(!edge)
+            {
+                continue;
+            }
+
+            if(edge is MazeWall)
+            {
+                walls.Add(edge as MazeWall);
+            }
+        }
+
+        return walls;
+    }
+
 	public MazeCellEdge GetEdge (MazeDirection direction)
     {
 		return edges[(int)direction];

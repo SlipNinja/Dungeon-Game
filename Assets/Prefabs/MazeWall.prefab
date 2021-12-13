@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792205216826563667}
   - component: {fileID: 2865029041917179286}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MazeWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +49,7 @@ MonoBehaviour:
   otherCell: {fileID: 0}
   direction: 0
   wall: {fileID: 5608991259069593082}
+  trap: {fileID: 0}
 --- !u!1 &327093089466395179
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +62,7 @@ GameObject:
   - component: {fileID: 5604825214631234870}
   - component: {fileID: 4468140580551018224}
   - component: {fileID: 4733801114604365045}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

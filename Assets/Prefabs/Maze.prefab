@@ -59,6 +59,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 4315038384114718822, guid: a90417fe99b6ec04b8f9a81f6c131c17, type: 3}
   doorPrefab: {fileID: 6023397203254483076, guid: 97b8d9e58b72c9643b6cf934a3116a4d, type: 3}
   elevatorPrefab: {fileID: 5969966629037690469, guid: ae3571d61b6eaaa418d4ecbf20c5e2b3, type: 3}
+  wallTrapPrefab: {fileID: 7284077903832735018, guid: 01efbb7c83b9d914ebd9f4547eee3f58, type: 3}
   floor: 0
   cellSizeX: 0
   cellSizeZ: 0

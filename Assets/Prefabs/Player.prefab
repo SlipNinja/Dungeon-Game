@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8aae4e52986b949a58fdf2dc984845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtbox: {fileID: 329139554}
   speed: 10
   jumpHeight: 3
   groundChecker: {fileID: 8900087671427530751}

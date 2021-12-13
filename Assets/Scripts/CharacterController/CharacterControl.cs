@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterControl : MonoBehaviour
 {
     #region Variables
+    public PlayerHealthComponent hurtbox;
     public static CharacterControl instance;
     [Header("Movement")]
     public float speed = 10f;
