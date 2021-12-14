@@ -12,7 +12,7 @@ public class WeaponControl : MonoBehaviour
     public GameObject myBulletType;
 
     public List<BulletComponent> bulletPool = new List<BulletComponent>();
-    WeaponComponent currentWeapon;
+    public WeaponComponent currentWeapon;
     bool shootCommand;
     bool shootCooldown = false;
     bool grabCommand;
@@ -20,6 +20,17 @@ public class WeaponControl : MonoBehaviour
     #endregion
 
     #region MonoBehaviour
+    private void Start()
+    {
+        if(currentWeapon != null)
+        {
+            itemDetector.gunList.Add( Instantiate(currentWeapon, this.transform.position, Quaternion.identity));
+            currentWeapon = null;
+            grabCommand = true;
+            Grab();
+        }
+        
+    }
     void Update()
     {
         Grab();
@@ -112,14 +123,14 @@ public class WeaponControl : MonoBehaviour
             {
                 if (!PoolManager.instance.bulletPool[i].gameObject.activeInHierarchy)
                 {
-                    PoolManager.instance.bulletPool[i].Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+                    PoolManager.instance.bulletPool[i].Fire(bulletSpawn, dir, currentWeapon.data.weaponData);
                     shootCommand = false;
                     return;
                 }
             }
             BulletComponent temp = Instantiate(myBulletType).GetComponent<BulletComponent>();
             PoolManager.instance.bulletPool.Add(temp);
-            temp.Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+            temp.Fire(bulletSpawn, dir, currentWeapon.data.weaponData);
         }
         else
         {
@@ -127,14 +138,14 @@ public class WeaponControl : MonoBehaviour
             {
                 if (!bulletPool[i].gameObject.activeInHierarchy)
                 {
-                    bulletPool[i].Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+                    bulletPool[i].Fire(bulletSpawn, dir, currentWeapon.data.weaponData);
                     shootCommand = false;
                     return;
                 }
             }
             BulletComponent temp = Instantiate(myBulletType).GetComponent<BulletComponent>();
             bulletPool.Add(temp);
-            temp.Fire(bulletSpawn.position, dir, currentWeapon.data.weaponData);
+            temp.Fire(bulletSpawn, dir, currentWeapon.data.weaponData);
         }
 
         

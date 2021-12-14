@@ -68,7 +68,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (!PoolManager.instance.bulletPool[i].gameObject.activeInHierarchy)
                 {
-                    PoolManager.instance.bulletPool[i].Fire(bulletSpawn.position, temp, 10);
+                    PoolManager.instance.bulletPool[i].Fire(bulletSpawn, temp, 10);
 
                     return;
                 }
@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
 
 
             //  Debug.Break();
-            go.Fire(bulletSpawn.position, temp, 10);
+            go.Fire(bulletSpawn, temp, 10);
         }
         else
         {
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (!bulletPool[i].gameObject.activeInHierarchy)
                 {
-                    bulletPool[i].Fire(bulletSpawn.position, temp, 10);
+                    bulletPool[i].Fire(bulletSpawn, temp, 10);
 
                     return;
                 }
@@ -96,7 +96,7 @@ public class EnemyController : MonoBehaviour
 
 
             //  Debug.Break();
-            go.Fire(bulletSpawn.position, temp, 10);
+            go.Fire(bulletSpawn, temp, 10);
         }
 
     }
