@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BulletComponent : MonoBehaviour
 {
     #region Variables
     public Rigidbody myRigidbody;
 
+    public UnityEvent collisionEvent;
 
     int bounce;
     #endregion
@@ -15,6 +17,11 @@ public class BulletComponent : MonoBehaviour
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
+    }
+   
+    private void Update()
+    {
+        
     }
     #endregion
 
@@ -27,23 +34,24 @@ public class BulletComponent : MonoBehaviour
 
             temp.ReceiveDamage();
         }
-
-            this.gameObject.SetActive(false);
+        collisionEvent.Invoke();
+       
+          //  this.gameObject.SetActive(false);
     }
 
-    public void Fire(Vector3 position, Vector3 direction, WeaponData myData)
+    public void Fire(Transform position, Vector3 direction, WeaponData myData)
     {
 
         this.gameObject.SetActive(true);
-        this.transform.position = position;
+        this.transform.SetPositionAndRotation(position.position, position.rotation);
         myRigidbody.velocity = (direction.normalized * myData.speed);
     }
 
-    public void Fire(Vector3 position, Vector3 direction, float speed)
+    public void Fire(Transform position, Vector3 direction, float speed)
     {
 
         this.gameObject.SetActive(true);
-        this.transform.position = position;
+        this.transform.SetPositionAndRotation(position.position, position.rotation);
         myRigidbody.velocity = (direction.normalized * speed);
     }
 
@@ -57,5 +65,7 @@ public class BulletComponent : MonoBehaviour
 
         this.GetComponent<Collider>().enabled = true;
     }
+
+  
     #endregion
 }

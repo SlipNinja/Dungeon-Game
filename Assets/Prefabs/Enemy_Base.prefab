@@ -241,7 +241,7 @@ MonoBehaviour:
   avoidanceRange: 1
   firingRate: 1
   firingDistance: 15
-  myBulletType: {fileID: 4322097995785205256, guid: 74c900878b8757a4d8d671ee45d53112, type: 3}
+  myBulletType: {fileID: 7100031101426830807, guid: 489a58df2041b18469585e75fb39d2cc, type: 3}
   bulletSpawn: {fileID: 1796654193}
 --- !u!143 &1112026142398644808
 CharacterController:

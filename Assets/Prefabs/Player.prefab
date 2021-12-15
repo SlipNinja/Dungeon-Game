@@ -416,8 +416,9 @@ MonoBehaviour:
   gunRoot: {fileID: 8900087672484420296}
   bulletSpawn: {fileID: 0}
   itemDetector: {fileID: 8900087671099784093}
-  myBulletType: {fileID: 4322097995785205256, guid: 74c900878b8757a4d8d671ee45d53112, type: 3}
+  myBulletType: {fileID: 4787121278278102167, guid: 51e8e0d0f5b07ab4d892a4f60275815a, type: 3}
   bulletPool: []
+  currentWeapon: {fileID: 3546444396306326385, guid: 468e73b220877b94e9981f4483c18662, type: 3}
 --- !u!75 &8900087671383322816
 ConstantForce:
   m_ObjectHideFlags: 0
