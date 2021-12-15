@@ -22,7 +22,7 @@ public class BulletHelper : MonoBehaviour
 
     public void DisableSelf()
     {
-        this.gameObject.SetActive(false);
+        this.transform.parent.gameObject.SetActive(false);
     }
 
     public void StopSelf()

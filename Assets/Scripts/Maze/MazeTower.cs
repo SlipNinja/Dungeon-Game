@@ -75,6 +75,18 @@ public class MazeTower : MonoBehaviour
         newMaze.Generate();
 
         mazes.Add(newMaze);
+
+        if (floor >= 0)
+        {
+            for (int i = 0; i < 5f; i++)
+            {
+                Vector3 positionTemp = new Vector3(Random.Range(0, newMaze.size.x * 4), newMaze.transform.position.y + 1f, Random.Range(0, newMaze.size.y * 4));
+
+                PoolManager.instance.SpawnEnemy(positionTemp, floor);
+               
+
+            }
+        }
         floor ++;
 
         return newMaze;
@@ -84,6 +96,11 @@ public class MazeTower : MonoBehaviour
     {
         Maze m = mazes.ElementAt(index);
         Debug.Log("Deleting floor " + m.floor + " Maze");
+        foreach (var item in PoolManager.instance.enemyPool)
+        {
+            if(item.currentFloor == index)
+            item.gameObject.SetActive(false);
+        }
         mazes.RemoveAt(index);
         Destroy(m.gameObject);
 
@@ -91,6 +108,7 @@ public class MazeTower : MonoBehaviour
 
     public Maze GetMaze(int floorMaze)
     {
+       
         foreach (Maze m in mazes)
         {
             if(m.floor == floorMaze)

@@ -22,9 +22,13 @@ public class EnemyController : MonoBehaviour
     List<BulletComponent> bulletPool = new List<BulletComponent>();
     HealthComponent myHealth;
     float timer = 0;
+    public float currentFloor;
+    private LayerMask mask;
+    bool dead = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        mask = LayerMask.NameToLayer("Walls") & LayerMask.NameToLayer("Player");
         myHealth = GetComponentInChildren<HealthComponent>();
            myCharacterContreller = GetComponent<CharacterController>();
         target = FindObjectOfType<CharacterControl>().transform;
@@ -34,6 +38,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CharacterControl.instance.currentFloor != currentFloor)
+            return;
         ObstacleAvoidance();
         CharacterMovement();
         Combat();
@@ -47,34 +53,49 @@ public class EnemyController : MonoBehaviour
         sprite.transform.rotation = Quaternion.LookRotation(temp);
         if (Vector3.Distance(target.position ,this.transform.position) <= distance)
             return;
+        if (dead)
+            return;
         myCharacterContreller.SimpleMove((temp + normal).normalized * speed);
 
     }
 
     void Combat()
     {
-        if (Vector3.Distance(target.position , this.transform.position) > firingDistance)
+        if (Vector3.Distance(target.position, this.transform.position) > firingDistance)
             return;
+
         timer += Time.deltaTime;
 
         if (timer < firingRate)
             return;
+
+        if (Physics.Raycast(this.transform.position, sprite.transform.TransformDirection(new Vector3(0f, 0f, 1f)), out RaycastHit hit, firingDistance + 1f, mask))
+        {
+            if (hit.transform.name == "Player")
+            {
+            }
+            else
+            {
+
+                return;
+            }
+        }
         timer = 0;
-      
+
 
         if (PoolManager.instance)
         {
-            for (int i = 0; i < PoolManager.instance.bulletPool.Count; i++)
+            for (int i = 0; i < PoolManager.instance.bulletPoolEnemy.Count; i++)
             {
-                if (!PoolManager.instance.bulletPool[i].gameObject.activeInHierarchy)
+                if (!PoolManager.instance.bulletPoolEnemy[i].gameObject.activeInHierarchy)
                 {
-                    PoolManager.instance.bulletPool[i].Fire(bulletSpawn, temp, 10);
+                    PoolManager.instance.bulletPoolEnemy[i].Fire(bulletSpawn, temp, 10);
 
                     return;
                 }
             }
             BulletComponent go = Instantiate(myBulletType).GetComponent<BulletComponent>();
-            PoolManager.instance.bulletPool.Add(go);
+            PoolManager.instance.bulletPoolEnemy.Add(go);
 
 
             //  Debug.Break();
@@ -98,7 +119,6 @@ public class EnemyController : MonoBehaviour
             //  Debug.Break();
             go.Fire(bulletSpawn, temp, 10);
         }
-
     }
 
     void ObstacleAvoidance()
@@ -117,10 +137,17 @@ public class EnemyController : MonoBehaviour
             // Debug.Break();
         }
     }
-
-    public void RestartAgent()
+    public void Death()
+    {
+        myHealth.enabled = false;
+           dead = true;
+    }
+    public void RestartAgent(int floor)
     {
         this.gameObject.SetActive(true);
         myHealth.RestoreHealth();
+        currentFloor = floor;
+        dead = false;
+        myHealth.enabled = true;
     }
 }

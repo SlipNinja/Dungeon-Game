@@ -18,7 +18,7 @@ public class BulletComponent : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody>();
     }
-
+   
     private void Update()
     {
         
