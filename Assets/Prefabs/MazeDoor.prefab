@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6023397202285719965}
   - component: {fileID: 6023397202285719964}
   - component: {fileID: 6023397202285719963}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 6023397202326060222}
   - component: {fileID: 6023397202326060221}
   - component: {fileID: 4234587243742848948}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 6023397202666230204}
   - component: {fileID: 6023397202666230203}
   - component: {fileID: 6023397202666230202}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 6023397203170737062}
   - component: {fileID: 6023397203170737061}
   - component: {fileID: 6023397203170737060}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6023397203254483075}
   - component: {fileID: 6023397203254483076}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MazeDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 6023397203333880194}
   - component: {fileID: 6023397203333880193}
   - component: {fileID: 6023397203333880192}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 6023397203862552851}
   - component: {fileID: 6023397203862552850}
   - component: {fileID: 6023397203862552849}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6023397203879093264}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: hinge
   m_TagString: Untagged
   m_Icon: {fileID: 0}

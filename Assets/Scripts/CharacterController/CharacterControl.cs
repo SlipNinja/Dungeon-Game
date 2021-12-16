@@ -16,7 +16,7 @@ public class CharacterControl : MonoBehaviour
     public float groundCheckRadius = 0.4f;
 
     [Header("Camera")]
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 2000f;
     public int currentFloor;
     public MazeCell currentCell;
 

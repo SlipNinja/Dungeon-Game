@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e2799c6fe14554a99fc3be17b0861e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 10
+  maxHealthPoints: 2
   curHealthPoints: 0
   deathEvent:
     m_PersistentCalls:
@@ -243,6 +243,7 @@ MonoBehaviour:
   firingDistance: 15
   myBulletType: {fileID: 7100031101426830807, guid: 489a58df2041b18469585e75fb39d2cc, type: 3}
   bulletSpawn: {fileID: 1796654193}
+  currentFloor: 0
 --- !u!143 &1112026142398644808
 CharacterController:
   m_ObjectHideFlags: 0
