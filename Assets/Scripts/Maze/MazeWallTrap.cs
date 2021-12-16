@@ -15,7 +15,7 @@ public class MazeWallTrap : MonoBehaviour
     void Start()
     {
         int playerLayer = 1 << LayerMask.NameToLayer("Player");
-        int wallLayer = 1 << LayerMask.NameToLayer("Walls");
+        int wallLayer = 1 << LayerMask.NameToLayer("Wall");
         mask = playerLayer | wallLayer;
     }
 

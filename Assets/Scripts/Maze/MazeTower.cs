@@ -76,20 +76,27 @@ public class MazeTower : MonoBehaviour
 
         mazes.Add(newMaze);
 
-        if (floor >= 0)
-        {
-            for (int i = 0; i < 5f; i++)
-            {
-                Vector3 positionTemp = new Vector3(Random.Range(0, newMaze.size.x * 4), newMaze.transform.position.y + 1f, Random.Range(0, newMaze.size.y * 4));
+        SpawnEnnemies(newMaze);
 
-                PoolManager.instance.SpawnEnemy(positionTemp, floor);
-               
-
-            }
-        }
         floor ++;
 
         return newMaze;
+    }
+
+    private void SpawnEnnemies(Maze m)
+    {
+        int numberOfEnnemies = Random.Range(1, floor);
+        if(numberOfEnnemies > 6)
+        {
+            numberOfEnnemies = 6;
+        }
+
+        for (int i = 0; i < numberOfEnnemies; i++)
+        {
+            Vector3 positionTemp = new Vector3(Random.Range(0, m.size.x * 4), m.transform.position.y + 1f, Random.Range(0, m.size.y * 4));
+
+            PoolManager.instance.SpawnEnemy(positionTemp, floor);
+        }
     }
 
     public void DeleteMaze(int index)

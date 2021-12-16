@@ -25,12 +25,16 @@ public class EnemyController : MonoBehaviour
     public float currentFloor;
     private LayerMask mask;
     bool dead = false;
+
     // Start is called before the first frame update
     void Awake()
     {
-        mask = LayerMask.NameToLayer("Walls") & LayerMask.NameToLayer("Player");
+        int playerLayer = 1 << LayerMask.NameToLayer("Player");
+        int wallLayer = 1 << LayerMask.NameToLayer("Wall");
+        mask = playerLayer | wallLayer;
+
         myHealth = GetComponentInChildren<HealthComponent>();
-           myCharacterContreller = GetComponent<CharacterController>();
+        myCharacterContreller = GetComponent<CharacterController>();
         target = FindObjectOfType<CharacterControl>().transform;
         timer = firingRate;
     }
@@ -40,9 +44,14 @@ public class EnemyController : MonoBehaviour
     {
         if (CharacterControl.instance.currentFloor != currentFloor)
             return;
-        ObstacleAvoidance();
-        CharacterMovement();
-        Combat();
+
+        if(PlayerInView())// Do nothing while not seeing the player
+        {
+            Debug.Log("Player in view !");
+            ObstacleAvoidance();
+            CharacterMovement();
+            Combat();
+        } 
     }
 
     void CharacterMovement()
@@ -119,6 +128,22 @@ public class EnemyController : MonoBehaviour
             //  Debug.Break();
             go.Fire(bulletSpawn, temp, 10);
         }
+    }
+
+    private bool PlayerInView()
+    {
+        RaycastHit hit;
+        Vector3 targetDir = target.position - this.transform.position;
+
+        if(Physics.Raycast(transform.position, targetDir, out hit, 100f, mask))
+        {
+            if(hit.transform.name.Contains("Player"))
+            {
+                //lastSeenPlayerPosition = player.position;
+                return true;
+            }
+        }
+        return false;
     }
 
     void ObstacleAvoidance()

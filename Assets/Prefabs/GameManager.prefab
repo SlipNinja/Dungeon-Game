@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1409081581414207658}
   - component: {fileID: 1409081581414207653}
+  - component: {fileID: 6332889356965905433}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,3 +47,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeTowerPrefab: {fileID: 4899175120892032006, guid: c4e3b44d07ff6ff489079eb627f580a7, type: 3}
   playerPrefab: {fileID: 8900087671383322818, guid: d08c85e7ce00d90428d7278fc88dc723, type: 3}
+--- !u!114 &6332889356965905433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409081581414207659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7212c7b3a3ecbb84399001b96ee97365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPool: []
+  bulletPoolEnemy: []
+  enemyPool: []
+  enemyTypes:
+  - {fileID: 8239326089890161522, guid: 930dc55800743c24e838367eb0a1f242, type: 3}
+  - {fileID: 1068855168464250171, guid: c139d515ef54f9341b73b605ea221ad4, type: 3}
+  - {fileID: 1582113679085954176, guid: 1e5d747585bfb5146bc32e92e28a7e39, type: 3}
