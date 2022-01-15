@@ -8,7 +8,7 @@ public class CharacterControl : MonoBehaviour
     public PlayerHealthComponent hurtbox;
     public static CharacterControl instance;
     [Header("Movement")]
-    public float speed = 10f;
+    public float speed = 50f;
     [Header("Jump")]
     public float jumpHeight = 3f;
     public Transform groundChecker;
@@ -16,16 +16,17 @@ public class CharacterControl : MonoBehaviour
     public float groundCheckRadius = 0.4f;
 
     [Header("Camera")]
-    public float mouseSensitivity = 2000f;
+    public float mouseSensitivity = 10000f;
     public int currentFloor;
     public MazeCell currentCell;
 
     Rigidbody myRigidbody;
     ConstantForce myConstantForce;
     float xRotation = 0f;
+    float yRotation = 0f;
     Vector2 characterMovement;
     Vector2 mouseMovement;
-    Vector3 customGravity = new Vector3(0, -9.81f, 0);
+    Vector3 customGravity = new Vector3(0, -20f, 0);
     bool isGrounded = false;
     bool jumpCommand;
 
@@ -35,7 +36,7 @@ public class CharacterControl : MonoBehaviour
     private void Awake()
     {
         instance = this;
-           myRigidbody = GetComponent<Rigidbody>();
+        myRigidbody = GetComponent<Rigidbody>();
         myConstantForce = GetComponent<ConstantForce>();
 
         currentCell = GetCurrentCell();
@@ -61,9 +62,6 @@ public class CharacterControl : MonoBehaviour
         
     }
 
-    private void UpdateCurrentCell()
-    {}
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(groundChecker.position, groundCheckRadius);
@@ -80,11 +78,14 @@ public class CharacterControl : MonoBehaviour
         float mouseX = mouseMovement.x * mouseSensitivity * Time.deltaTime;
         float mouseY = mouseMovement.y * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation += mouseX;
+        yRotation -= mouseY;
 
-        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        this.transform.Rotate(Vector3.up * mouseX);
+        xRotation = Mathf.Repeat(xRotation, 360);
+        yRotation = Mathf.Clamp(yRotation, -25f, 25f);
+
+        Camera.main.transform.localRotation = Quaternion.Euler(yRotation, 0f, 0f);
+        transform.eulerAngles = new Vector3(0f, xRotation, 0f);
     }
     /// <summary>
     /// Controls the players avatar through the values in characterMovement
