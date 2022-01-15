@@ -7,6 +7,7 @@ public class MazeCell : MonoBehaviour
     public Transform floor, ceiling;
     public Vector2Int coordinates;
     public MazeRoom room;
+    public int floorNumber;
 	
     private int initializedEdgeCount;
 

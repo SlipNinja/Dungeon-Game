@@ -46,8 +46,6 @@ public class MazeElevator : MonoBehaviour
                     // At the top
                     
                     upperCell.SetFloor(true);
-                    CharacterControl.instance.currentFloor += 1;
-                    InterfaceHandler.instance.SetFloor(CharacterControl.instance.currentFloor);
                     done = true;
                     CharacterControl.instance.transform.SetParent(null);
                     Destroy(gameObject);

@@ -132,13 +132,14 @@ public class Maze : MonoBehaviour
 		elevatorInstance.transform.position = elevatorPos;
 	}
 
-	private MazeCell CreateCell (Vector2Int coords) {
+	private MazeCell CreateCell (Vector2Int coords, int floor) {
 		MazeCell newCell = Instantiate(cellPrefab) as MazeCell;
 
 		cells[coords.x, coords.y] = newCell;
         
 		newCell.name = "Maze Cell " + coords.x + ", " + coords.y;
 		newCell.transform.parent = transform;
+		newCell.floorNumber = floor;
         newCell.transform.localPosition = new Vector3(coords.x * cellSizeX + 0.5f, 0f, coords.y * cellSizeZ + 0.5f);
         newCell.coordinates = coords;
 
@@ -211,7 +212,7 @@ public class Maze : MonoBehaviour
 
     private void DoFirstGenerationStep (List<MazeCell> activeCells) {
 		Vector2Int randCoords = RandomCoordinates();
-		MazeCell newCell = CreateCell(randCoords);
+		MazeCell newCell = CreateCell(randCoords, floor);
 		newCell.Initialize(CreateRoom(-1));
 
 		// Get floor material into ceiling
@@ -241,7 +242,7 @@ public class Maze : MonoBehaviour
 		{
 			MazeCell neighbor = GetCell(coordinates);
 			if (neighbor == null) {
-				neighbor = CreateCell(coordinates);
+				neighbor = CreateCell(coordinates, floor);
 				CreatePassage(currentCell, neighbor, direction);
 
 				// Get floor material into ceiling

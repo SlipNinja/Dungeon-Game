@@ -37,6 +37,8 @@ public class CharacterControl : MonoBehaviour
         instance = this;
            myRigidbody = GetComponent<Rigidbody>();
         myConstantForce = GetComponent<ConstantForce>();
+
+        currentCell = GetCurrentCell();
     }
     
     private void Update()
@@ -50,12 +52,17 @@ public class CharacterControl : MonoBehaviour
         CharacterMovement();
         
         currentCell = GetCurrentCell();
+
         if(currentCell)
         {
+            InterfaceHandler.instance.SetFloor(currentCell.floorNumber);
             currentCell.OnCell();  
         }
         
     }
+
+    private void UpdateCurrentCell()
+    {}
 
     private void OnDrawGizmosSelected()
     {

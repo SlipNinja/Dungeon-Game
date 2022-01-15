@@ -37,7 +37,12 @@ public class MazeTower : MonoBehaviour
             StartCoroutine(RemovePastMazes());
         }
 
-        if(player.currentFloor >= floor-2)// always 3 floors
+        if(player.currentCell)
+        {
+            player.currentFloor = player.currentCell.floorNumber;
+        }
+
+        if(player.currentFloor >= floor-3)// always 4 floors
         {
             GenerateNewMaze();
         }
